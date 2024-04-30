@@ -1,0 +1,55 @@
+table Customers
+	lineageTag: 239bd632-e2b0-4c6e-9e07-f5d1511fe2d3
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: ff2858dc-f694-4230-8305-d15b4cdfb6e4
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 2e965872-a349-462f-b5f9-7fda7612d997
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: c5e0784e-c26e-41fc-888c-a40d69d06940
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: e63e69ab-cf63-42c0-bfcc-f986c5d22a39
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column con = SUBSTITUTE()
+		lineageTag: 515ec608-a0cb-47cd-bb3c-867164116862
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\mardin\Downloads\Skill Mentors Data Set [Excel]\Customers.xlsx"), null, true),
+				    Customers_Sheet = Source{[Item="Customers",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Customers_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerID", Int64.Type}, {"FirstName", type text}, {"LastName", type text}, {"Email", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

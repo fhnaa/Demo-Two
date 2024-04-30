@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Customers","Department","Sheet1","Expenses","Orders","Products","Project Members","Projects","Sales","SuppliersProduct","Suppliers"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.128.1177.0 (24.04)
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Customers
+ref table DateTableTemplate_51bb01a8-896b-41f8-a9d9-3d109b452bae
+ref table Department
+ref table Sheet1
+ref table Expenses
+ref table LocalDateTable_579edbc5-9649-4708-b9a2-8a64f47ce1cd
+ref table Orders
+ref table LocalDateTable_0cb1704c-5bb2-4db3-b154-c258e1ca83c2
+ref table Products
+ref table 'Project Members'
+ref table Projects
+ref table Sales
+ref table LocalDateTable_8c7f137f-751d-490a-9afc-45da1322d086
+ref table SuppliersProduct
+ref table Suppliers
+

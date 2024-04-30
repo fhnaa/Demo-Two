@@ -1,0 +1,42 @@
+table Projects
+	lineageTag: 4ce6a93a-e3e8-4796-ae68-1c8880b92554
+
+	column ProjectID
+		dataType: int64
+		formatString: 0
+		lineageTag: cf42630f-2a15-4e4d-9883-e8d25452629e
+		summarizeBy: count
+		sourceColumn: ProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectName
+		dataType: string
+		lineageTag: a84c23f5-3b95-437b-8834-f77fd77244fb
+		summarizeBy: none
+		sourceColumn: ProjectName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentID
+		dataType: int64
+		formatString: 0
+		lineageTag: aaacd7eb-80fc-40a9-bb0c-a8ee44ed7f7b
+		summarizeBy: none
+		sourceColumn: DepartmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Projects = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\mardin\Downloads\Skill Mentors Data Set [Excel]\Projects.xlsx"), null, true),
+				    Projects_Sheet = Source{[Item="Projects",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Projects_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProjectID", Int64.Type}, {"ProjectName", type text}, {"DepartmentID", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,33 @@
+table Department
+	lineageTag: 550cf56b-bbcd-4256-bb9c-35dd0839e84c
+
+	column DepartmentID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5eb92488-c8af-4ee3-ab4d-15a4365669e7
+		summarizeBy: none
+		sourceColumn: DepartmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentName
+		dataType: string
+		lineageTag: 6295ffd1-3c97-4a8a-8875-6d566c5b0943
+		summarizeBy: none
+		sourceColumn: DepartmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Department = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\mardin\Downloads\Skill Mentors Data Set [Excel]\Department.xlsx"), null, true),
+				    Department_Sheet = Source{[Item="Department",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Department_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DepartmentID", Int64.Type}, {"DepartmentName", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

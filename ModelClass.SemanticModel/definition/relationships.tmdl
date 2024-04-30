@@ -1,0 +1,62 @@
+relationship 7b9f8206-5ea7-4870-b314-1063e72bb91d
+	fromColumn: Sheet1.DepartmentID
+	toColumn: Department.DepartmentID
+
+relationship e7a6971b-8b2b-4f45-85eb-cca22873c2b9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Expenses.Date
+	toColumn: LocalDateTable_579edbc5-9649-4708-b9a2-8a64f47ce1cd.Date
+
+relationship 7c6951bc-909b-471d-a1ae-67aa547edb49
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.OrderDate
+	toColumn: LocalDateTable_0cb1704c-5bb2-4db3-b154-c258e1ca83c2.Date
+
+relationship 3dbd805d-e6da-4a4c-8ce2-3e4dbe248405
+	fromColumn: Orders.CustomerID
+	toColumn: Customers.CustomerID
+
+relationship f96ba2d5-245a-4bd1-9b05-bff9663a80c2
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Products.ProductID
+	toColumn: Orders.ProductID
+
+relationship 389ac091-660d-4a9f-98d7-cc13a7b956b1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Sheet1.EmployeeID
+	toColumn: 'Project Members'.EmployeeID
+
+relationship 3ba9dc2f-84d9-4f3e-b0c9-07889487922c
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Projects.DepartmentID
+	toColumn: Department.DepartmentID
+
+relationship b51a4876-0446-4d39-8cb0-6ac0ca8d1316
+	isActive: false
+	fromColumn: 'Project Members'.ProjectID
+	toColumn: Projects.ProjectID
+
+relationship 2cd73673-ed81-4e67-a25a-fbc2ea3453d0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.SaleDate
+	toColumn: LocalDateTable_8c7f137f-751d-490a-9afc-45da1322d086.Date
+
+relationship 344e3a74-7b0f-46ad-bdd8-f8a2045146e0
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Sales.OrderID
+	toColumn: Orders.OrderID
+
+relationship 4ab4ca45-e342-48aa-b0e8-e647c9fa03cf
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: SuppliersProduct.ProductID
+	toColumn: Orders.ProductID
+
+relationship 83b667ef-96f4-40f4-ae39-ce2be8c44d10
+	fromColumn: SuppliersProduct.SupplierID
+	toColumn: Suppliers.SupplierID
+

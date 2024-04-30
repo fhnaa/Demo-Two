@@ -1,0 +1,59 @@
+table Sales
+	lineageTag: afdb9642-2322-474a-832c-897e329a5333
+
+	column SaleID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d286701-0d6e-48a1-a3a6-cb6e737fa53d
+		summarizeBy: count
+		sourceColumn: SaleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0282e4e3-e159-4051-b27b-b0075965d6ce
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 37466f8e-828e-4c2d-92d8-32f9a703dd56
+		summarizeBy: none
+		sourceColumn: SaleDate
+
+		variation Variation
+			isDefault
+			relationship: 2cd73673-ed81-4e67-a25a-fbc2ea3453d0
+			defaultHierarchy: LocalDateTable_8c7f137f-751d-490a-9afc-45da1322d086.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b6a61ca-f506-45d4-9374-89d86d139001
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\mardin\Downloads\Skill Mentors Data Set [Excel]\Sales.xlsx"), null, true),
+				    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SaleID", Int64.Type}, {"OrderID", Int64.Type}, {"SaleDate", type date}, {"Amount", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

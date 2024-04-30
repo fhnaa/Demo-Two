@@ -1,0 +1,58 @@
+table Expenses
+	lineageTag: 5dfbc4c8-9ccc-40c4-87a4-b02e6aabd5f8
+
+	column ExpenseID
+		dataType: int64
+		formatString: 0
+		lineageTag: 107ee21b-0ead-4186-8642-6c62da073b05
+		summarizeBy: count
+		sourceColumn: ExpenseID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: f278e8fd-ed5c-4252-bb8a-ef482736f43c
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e4becd0-9815-4d02-a8a7-948188a94607
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aecef78f-a50f-49aa-b5a8-f3a659060196
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: e7a6971b-8b2b-4f45-85eb-cca22873c2b9
+			defaultHierarchy: LocalDateTable_579edbc5-9649-4708-b9a2-8a64f47ce1cd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Expenses = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\mardin\Downloads\Skill Mentors Data Set [Excel]\Expenses.xlsx"), null, true),
+				    Expenses_Sheet = Source{[Item="Expenses",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Expenses_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ExpenseID", Int64.Type}, {"Category", type text}, {"Amount", Int64.Type}, {"Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

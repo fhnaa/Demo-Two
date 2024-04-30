@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 17
+          },
+          "nodeIndex": "Customers",
+          "nodeLineageTag": "239bd632-e2b0-4c6e-9e07-f5d1511fe2d3",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 41
+          },
+          "nodeIndex": "Department",
+          "nodeLineageTag": "550cf56b-bbcd-4256-bb9c-35dd0839e84c",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 17
+          },
+          "nodeIndex": "Sheet1",
+          "nodeLineageTag": "bd26c03c-1367-43b2-909d-cb5bd8a416a1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 17
+          },
+          "nodeIndex": "Expenses",
+          "nodeLineageTag": "5dfbc4c8-9ccc-40c4-87a4-b02e6aabd5f8",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 5
+          },
+          "nodeIndex": "Orders",
+          "nodeLineageTag": "35e2b2e4-71bc-4392-bc70-8533ef88a601",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 17
+          },
+          "nodeIndex": "Products",
+          "nodeLineageTag": "25602d73-e176-4f39-80f6-d2c85993d8dc",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 29
+          },
+          "nodeIndex": "Project Members",
+          "nodeLineageTag": "6ad114b3-74df-4f65-b4f0-4a7e5582bbe4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 29
+          },
+          "nodeIndex": "Projects",
+          "nodeLineageTag": "4ce6a93a-e3e8-4796-ae68-1c8880b92554",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 17
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "afdb9642-2322-474a-832c-897e329a5333",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2850,
+            "y": 31
+          },
+          "nodeIndex": "Suppliers",
+          "nodeLineageTag": "5e25017b-f548-4dcf-8917-1e8878afe79c",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2566,
+            "y": 19
+          },
+          "nodeIndex": "SuppliersProduct",
+          "nodeLineageTag": "9d49718b-32c2-4127-a69a-96f82374ae49",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 17.715610000000023,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

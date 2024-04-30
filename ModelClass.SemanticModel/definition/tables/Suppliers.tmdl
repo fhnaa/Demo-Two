@@ -1,0 +1,33 @@
+table Suppliers
+	lineageTag: 5e25017b-f548-4dcf-8917-1e8878afe79c
+
+	column SupplierID
+		dataType: int64
+		formatString: 0
+		lineageTag: fb00b183-7df5-4776-ba1a-7d374190bff4
+		summarizeBy: none
+		sourceColumn: SupplierID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierName
+		dataType: string
+		lineageTag: 32bf5bed-4b2f-45f2-b6ef-8e19fefd0596
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Suppliers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\mardin\Downloads\Skill Mentors Data Set [Excel]\Suppliers.xlsx"), null, true),
+				    Suppliers_Sheet = Source{[Item="Suppliers",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Suppliers_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SupplierID", Int64.Type}, {"SupplierName", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
